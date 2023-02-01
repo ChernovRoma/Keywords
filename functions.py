@@ -11,8 +11,8 @@ def make_clean_kw_list(file):
     return df
 
 
-def filter_kw_topic(df, topic):
-    df["Query"] = df["Query"][df["Query"].str.contains(topic)]
+def filter_kw_topic(df, filter):
+    df["Query"] = df["Query"][df["Query"].str.contains(filter)]
     df = df.dropna()
     return df
 
