@@ -1,7 +1,10 @@
 import pandas as pd
 
 words = []
-df = pd.read_excel("MOFU keywords.xlsx")
+df = pd.read_excel("icp SQs.xlsx")
+df["Search Query"] = df["Search Query"][
+      df["Search Query"].apply(lambda x: str(x).replace(" ", "").isalpha() and str(x).isascii())]
+df = df.dropna(subset=['Search Query'])
 
 for i in df['Search Query']:
     for word in i.split(" "):
@@ -10,7 +13,7 @@ for i in df['Search Query']:
 words_count_dict = dict(pd.Series(words).value_counts())
 good_words_list = []
 for key, value in words_count_dict.items():
-    if len(key) > 3 and value > 1:
+    if len(key) > 3 and value > 2:
         good_words_list.append(key)
 
 
@@ -28,4 +31,4 @@ for _ in df['Ad Groups']:
     _.sort()
 
 
-# df.to_excel(r'/Users/roman.chernov/Downloads/MOFU groups2.xlsx', index = False)
+df.to_excel(r'/Users/roman.chernov/Downloads/ICP Groups2.xlsx', index = False)
