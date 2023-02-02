@@ -44,6 +44,9 @@ def make_final_groups(df, good_words_list):
 
     for _ in df['Ad Groups']:
         _.sort()
+
+    df['Ad Groups'] = df['Ad Groups'].apply(lambda x: " | ".join(x))
+
     return df
 
 
