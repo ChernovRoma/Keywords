@@ -1,6 +1,6 @@
 import pandas as pd
 
- 
+
 def make_clean_kw_list(file):
     df = pd.read_csv(file, sep=',', skiprows=2)
     df["Search term"] = df["Search term"][
